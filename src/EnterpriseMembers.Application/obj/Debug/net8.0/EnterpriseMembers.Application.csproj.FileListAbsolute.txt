@@ -1,0 +1,15 @@
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/bin/Debug/net8.0/EnterpriseMembers.Application.deps.json
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/bin/Debug/net8.0/EnterpriseMembers.Application.dll
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/bin/Debug/net8.0/EnterpriseMembers.Application.pdb
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/bin/Debug/net8.0/EnterpriseMembers.Domain.dll
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/bin/Debug/net8.0/EnterpriseMembers.Domain.pdb
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/EnterpriseMembers.Application.csproj.AssemblyReference.cache
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/EnterpriseMembers.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/EnterpriseMembers.Application.AssemblyInfoInputs.cache
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/EnterpriseMembers.Application.AssemblyInfo.cs
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/EnterpriseMembers.Application.csproj.CoreCompileInputs.cache
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/Enterpri.3D5DBB1B.Up2Date
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/EnterpriseMembers.Application.dll
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/refint/EnterpriseMembers.Application.dll
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/EnterpriseMembers.Application.pdb
+/Users/sandeepsingh/RiderProjects/members-backend/src/EnterpriseMembers.Application/obj/Debug/net8.0/ref/EnterpriseMembers.Application.dll
