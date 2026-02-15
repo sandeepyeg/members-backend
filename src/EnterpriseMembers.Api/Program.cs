@@ -13,6 +13,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Threading.RateLimiting;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -156,9 +157,11 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Add Health Checks
+// Add Health Checks:
+// - /health: lightweight liveness probe
+// - /health/db: database connectivity probe
 builder.Services.AddHealthChecks()
-    .AddDbContextCheck<ApplicationDbContext>();
+    .AddDbContextCheck<ApplicationDbContext>("database");
 
 // Add Response Compression
 builder.Services.AddResponseCompression(options =>
@@ -172,6 +175,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    // SQLite over Azure Files is more stable with rollback journal mode.
+    await context.Database.ExecuteSqlRawAsync("PRAGMA journal_mode=DELETE;");
+    await context.Database.ExecuteSqlRawAsync("PRAGMA synchronous=NORMAL;");
+    await context.Database.ExecuteSqlRawAsync("PRAGMA busy_timeout=5000;");
     await DatabaseSeeder.SeedAsync(context);
 }
 
@@ -187,8 +194,25 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+// Keep probe path outside auth/rate-limit pipeline.
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path.Equals("/health", StringComparison.OrdinalIgnoreCase))
+    {
+        context.Response.StatusCode = StatusCodes.Status200OK;
+        await context.Response.WriteAsync("Healthy");
+        return;
+    }
+
+    await next();
+});
+
 app.UseResponseCompression();
-app.UseHttpsRedirection();
+// In Container Apps, TLS is terminated at ingress; keep container traffic HTTP.
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseCors();
 
@@ -204,8 +228,8 @@ app.MapControllers()
 
 app.MapControllers();
 
-// Health check endpoint
-app.MapHealthChecks("/health");
+// Readiness/dependency endpoint including database check
+app.MapHealthChecks("/health/db");
 
 app.Run();
 
